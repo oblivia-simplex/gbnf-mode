@@ -59,7 +59,7 @@
     `((gbnf-rule-name . ,(rx (and
                               (1+ (or alnum digit))
                               (0+ (or alnum digit
-                                      (in "_-"))))
+                                      (in "_-")))))))
     "Additional special sexps for `gbnf-rx'."))
 
   (defmacro gbnf-rx (&rest sexps)
@@ -79,7 +79,7 @@ See `rx' documentation for more information about REGEXPS param."
        (rx-to-string (cond ((null sexps) (error "No regexp is provided"))
                            ((cdr sexps)  `(and ,@sexps))
                            (t            (car sexps)))
-                     t))))
+                     t)))
 
 
 ;;;; Font Locking
