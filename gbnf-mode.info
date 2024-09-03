@@ -1,12 +1,12 @@
-This is bnf-mode.info, produced by makeinfo version 7.0.1 from
-bnf-mode.texi.
+This is gbnf-mode.info, produced by makeinfo version 7.0.1 from
+gbnf-mode.texi.
 
-BNF Mode is a GNU Emacs major mode for editing BNF grammars.  Presently
-it provides basic syntax and font-locking for BNF files.  BNF notation
+GBNF Mode is a GNU Emacs major mode for editing GBNF grammars.  Presently
+it provides basic syntax and font-locking for GBNF files.  GBNF notation
 is supported exactly form as it was first announced in the ALGOL 60
 report.
 
-This manual is for BNF Mode version 0.4.5.
+This manual is for GBNF Mode version 0.4.5.
 
    Copyright © 2019-2022 Free Software Foundation, Inc.
 
@@ -22,21 +22,21 @@ This manual is for BNF Mode version 0.4.5.
      modify this GNU manual.”
 INFO-DIR-SECTION Emacs
 START-INFO-DIR-ENTRY
-* BNF Mode: (bnf-mode).         Major mode for editing BNF grammars.
+* GBNF Mode: (gbnf-mode).         Major mode for editing GBNF grammars.
 END-INFO-DIR-ENTRY
 
 
-File: bnf-mode.info,  Node: Top,  Next: Introduction,  Up: (dir)
+File: gbnf-mode.info,  Node: Top,  Next: Introduction,  Up: (dir)
 
-BNF Mode User Manual
+GBNF Mode User Manual
 ********************
 
 * Menu:
 
 * Introduction::     The mode description and concepts.
-* Installation::     The ways of instalation BNF Mode.
-* Usage::            BNF Mode usage.
-* Customizing::      Customizing BNF Mode.
+* Installation::     The ways of instalation GBNF Mode.
+* Usage::            GBNF Mode usage.
+* Customizing::      Customizing GBNF Mode.
 * Project Links::    Some important project links.
 * Bibliography::     External resources used in the project.
 * Index::            Complete index.
@@ -58,18 +58,18 @@ Project Links
 
 
 
-File: bnf-mode.info,  Node: Introduction,  Next: Installation,  Prev: Top,  Up: Top
+File: gbnf-mode.info,  Node: Introduction,  Next: Installation,  Prev: Top,  Up: Top
 
 1 Introduction
 **************
 
-BNF Mode is a GNU Emacs major mode for editing BNF grammars.  Presently
-it provides basic syntax and font-locking for BNF files.  BNF notation
+GBNF Mode is a GNU Emacs major mode for editing GBNF grammars.  Presently
+it provides basic syntax and font-locking for GBNF files.  GBNF notation
 is supported exactly form as it was first announced in the ALGOL 60
 report.
 
-   Bellow canonical BNF notation represented with a BNF is presented.
-The syntax of the BNF has been carefully copied from Revised ALGOL 60
+   Bellow canonical GBNF notation represented with a GBNF is presented.
+The syntax of the GBNF has been carefully copied from Revised ALGOL 60
 report.  For more see <http://www.masswerk.at/algol60/report.htm>.
 
      <syntax>         ::= <rule> | <rule> <syntax>
@@ -99,15 +99,15 @@ report.  For more see <http://www.masswerk.at/algol60/report.htm>.
      <empty>          ::=
 
 
-File: bnf-mode.info,  Node: Installation,  Next: Usage,  Prev: Introduction,  Up: Top
+File: gbnf-mode.info,  Node: Installation,  Next: Usage,  Prev: Introduction,  Up: Top
 
 2 Installation
 **************
 
-BNF Mode known to work with GNU Emacs 25.1 and later.  BNF Mode may work
+GBNF Mode known to work with GNU Emacs 25.1 and later.  GBNF Mode may work
 with older versions of Emacs, or with other flavors of Emacs (e.g.
 XEmacs) but this is not guaranteed.  Bug reports for problems related to
-using BNF Mode with older versions of Emacs will most like not be
+using GBNF Mode with older versions of Emacs will most like not be
 addressed.
 
 * Menu:
@@ -117,12 +117,12 @@ addressed.
 * Installing from the Git Repository::
 
 
-File: bnf-mode.info,  Node: Installing from Elpa or Melpa,  Next: Installing using El-get,  Up: Installation
+File: gbnf-mode.info,  Node: Installing from Elpa or Melpa,  Next: Installing using El-get,  Up: Installation
 
 2.1 Installing from Elpa or Melpa
 =================================
 
-BNF Mode is available from Elpa, Melpa and Melpa-Stable.  If you haven’t
+GBNF Mode is available from Elpa, Melpa and Melpa-Stable.  If you haven’t
 used Emacs’ package manager before, then it is high time you familiarize
 yourself with it by reading the documentation in the Emacs manual, see
 *note (emacs)Packages::.  Then add one of the archives to
@@ -147,119 +147,119 @@ yourself with it by reading the documentation in the Emacs manual, see
                   '("melpa" . "https://melpa.org/packages/") t)
      (package-initialize)
 
-   Melpa tracks BNF Mode’s Git repository and updates relatively soon
+   Melpa tracks GBNF Mode’s Git repository and updates relatively soon
 after each commit or formal release.  For more detail on setting up see
 MELPA Getting Started (https://melpa.org/#/getting-started).
 
    Once you have added your preferred archive, you need to update the
 local package list using ‘M-x’ ‘package-refresh-contents’ ‘RET’.
 Finally, use ‘M-x’ ‘package-list-packages’ ‘RET’ to get to the package
-listing and install ‘bnf-mode’ from there.
+listing and install ‘gbnf-mode’ from there.
 
-   There are several ways to install ‘bnf-mode’ after package
+   There are several ways to install ‘gbnf-mode’ after package
 initialization:
 
-   • You can install ‘bnf-mode’ manually by adding following to your
+   • You can install ‘gbnf-mode’ manually by adding following to your
      init file:
 
-     (unless (package-installed-p 'bnf-mode)
+     (unless (package-installed-p 'gbnf-mode)
          (package-refresh-contents)
-         (package-install 'bnf-mode))
+         (package-install 'gbnf-mode))
 
    • To use Cask (https://cask.github.io/) add following to your ‘Cask’
      file:
 
      (source melpa)
-     (depends-on "bnf-mode")
+     (depends-on "gbnf-mode")
 
-   • To install ‘bnf-mode’ using ‘use-package’ add following to your
+   • To install ‘gbnf-mode’ using ‘use-package’ add following to your
      init file:
 
-     (use-package bnf-mode
+     (use-package gbnf-mode
        :ensure t
        ;; To use MELPA Stable use ":pin mepla-stable",
        ;; to use ELPA remove ":pin" line
        :pin melpa
-       :mode "\\.bnf\\'")
+       :mode "\\.gbnf\\'")
 
 
-File: bnf-mode.info,  Node: Installing using El-get,  Next: Installing from the Git Repository,  Prev: Installing from Elpa or Melpa,  Up: Installation
+File: gbnf-mode.info,  Node: Installing using El-get,  Next: Installing from the Git Repository,  Prev: Installing from Elpa or Melpa,  Up: Installation
 
 2.2 Installing using El-get
 ===========================
 
-If you use el-get, just create a recipe file ‘bnf.rcp’:
+If you use el-get, just create a recipe file ‘gbnf.rcp’:
 
-     (:name bnf-mode
-      :website "https://github.com/sergeyklay/bnf-mode"
-      :description "BNF Mode: A major mode for editing BNF grammars"
+     (:name gbnf-mode
+      :website "https://github.com/sergeyklay/gbnf-mode"
+      :description "GBNF Mode: A major mode for editing GBNF grammars"
       :type github
-      :pkgname "sergeyklay/bnf-mode")
+      :pkgname "sergeyklay/gbnf-mode")
 
    Then add it to a directory present in ‘el-get-recipe-path’.  Then,
-use ‘M-x’ ‘el-get-install’ ‘RET’ ‘bnf-mode’ ‘RET’ or add to your init
+use ‘M-x’ ‘el-get-install’ ‘RET’ ‘gbnf-mode’ ‘RET’ or add to your init
 file:
 
-     (el-get-bundle bnf-mode)
+     (el-get-bundle gbnf-mode)
 
 
-File: bnf-mode.info,  Node: Installing from the Git Repository,  Prev: Installing using El-get,  Up: Installation
+File: gbnf-mode.info,  Node: Installing from the Git Repository,  Prev: Installing using El-get,  Up: Installation
 
 2.3 Installing from the Git Repository
 ======================================
 
-BNF Mode depends only on the ‘cl-lib’, which is bundled with GNU Emacs.
-Thus you don’t have to install any additional library to satisfy BNF
-Mode dependencies.  Below are simple steps to install BNF Mode using
+GBNF Mode depends only on the ‘cl-lib’, which is bundled with GNU Emacs.
+Thus you don’t have to install any additional library to satisfy GBNF
+Mode dependencies.  Below are simple steps to install GBNF Mode using
 manual approach:
 
-   Clone the BNF Mode repository:
+   Clone the GBNF Mode repository:
 
-     $ git clone https://github.com/sergeyklay/bnf-mode.git \
-       ~/.emacs.d/site-lisp/bnf-mode
+     $ git clone https://github.com/sergeyklay/gbnf-mode.git \
+       ~/.emacs.d/site-lisp/gbnf-mode
 
    Add this to your init file:
 
-     (add-to-list 'load-path "~/.emacs.d/site-lisp/bnf-mode")
+     (add-to-list 'load-path "~/.emacs.d/site-lisp/gbnf-mode")
 
    Add either of the two following lines to your initialization file.
-The first only loads BNF Mode when necessary, the 2nd always during
+The first only loads GBNF Mode when necessary, the 2nd always during
 startup of GNU Emacs:
 
-     (autoload 'bnf-mode "bnf-mode" nil t)
+     (autoload 'gbnf-mode "gbnf-mode" nil t)
      ;; OR
-     (require 'bnf-mode)
+     (require 'gbnf-mode)
 
 
-File: bnf-mode.info,  Node: Usage,  Next: Customizing,  Prev: Installation,  Up: Top
+File: gbnf-mode.info,  Node: Usage,  Next: Customizing,  Prev: Installation,  Up: Top
 
 3 Usage
 *******
 
-By default any file that matches the glob ‘*.bnf’ is automatically
-opened in ‘bnf-mode’.  To toggle the mode in the current buffer use
-‘M-x’ ‘bnf-mode’ ‘RET’.
+By default any file that matches the glob ‘*.gbnf’ is automatically
+opened in ‘gbnf-mode’.  To toggle the mode in the current buffer use
+‘M-x’ ‘gbnf-mode’ ‘RET’.
 
 
-File: bnf-mode.info,  Node: Customizing,  Next: Project Links,  Prev: Usage,  Up: Top
+File: gbnf-mode.info,  Node: Customizing,  Next: Project Links,  Prev: Usage,  Up: Top
 
 4 Customizing
 *************
 
 There are not so much customization options yet.
 
-   To customize ‘abbrev-mode’ for ‘bnf-mode’, simple add preffered
-abbreviations to ‘bnf-mode-abbrev-table’.
+   To customize ‘abbrev-mode’ for ‘gbnf-mode’, simple add preffered
+abbreviations to ‘gbnf-mode-abbrev-table’.
 
    If you want, you can go without any customizations at all.  The above
 settings are the most bang for the buck in terms of customization.  So
 users that typically don’t like customize a lot are advised to look at
-these settings first.  To customize BNF Mode options using textual GUI
-system, use the following command: ‘M-x’ ‘customize-group’ ‘RET’ ‘bnf’
+these settings first.  To customize GBNF Mode options using textual GUI
+system, use the following command: ‘M-x’ ‘customize-group’ ‘RET’ ‘gbnf’
 ‘RET’.
 
 
-File: bnf-mode.info,  Node: Project Links,  Next: Bibliography,  Prev: Customizing,  Up: Top
+File: gbnf-mode.info,  Node: Project Links,  Next: Bibliography,  Prev: Customizing,  Up: Top
 
 5 Project Links
 ***************
@@ -270,41 +270,41 @@ File: bnf-mode.info,  Node: Project Links,  Next: Bibliography,  Prev: Customizi
 * Change Log::
 
 
-File: bnf-mode.info,  Node: Bugs Tracker,  Next: Change Log,  Up: Project Links
+File: gbnf-mode.info,  Node: Bugs Tracker,  Next: Change Log,  Up: Project Links
 
 5.1 Bugs Tracker
 ================
 
 Bug tracking is currently handled using the GitHub issue tracker
-(https://github.com/sergeyklay/bnf-mode/issues).
+(https://github.com/sergeyklay/gbnf-mode/issues).
 
 
-File: bnf-mode.info,  Node: Change Log,  Prev: Bugs Tracker,  Up: Project Links
+File: gbnf-mode.info,  Node: Change Log,  Prev: Bugs Tracker,  Up: Project Links
 
 5.2 Change Log
 ==============
 
 History is tracked in the Git repository
-(https://github.com/sergeyklay/bnf-mode/blob/master/NEWS) rather than in
+(https://github.com/sergeyklay/gbnf-mode/blob/master/NEWS) rather than in
 this documentation.
 
 
-File: bnf-mode.info,  Node: Bibliography,  Next: Index,  Prev: Project Links,  Up: Top
+File: gbnf-mode.info,  Node: Bibliography,  Next: Index,  Prev: Project Links,  Up: Top
 
 6 Bibliography
 **************
 
-Below are some links to external resources used when developed BNF Mode:
+Below are some links to external resources used when developed GBNF Mode:
 
    • RFC822: Standard for ARPA Internet Text Messages.
 
      <https://www.ietf.org/rfc/rfc822.txt>
 
-   • RFC5234: Augmented BNF for Syntax Specifications ABNF.
+   • RFC5234: Augmented GBNF for Syntax Specifications AGBNF.
 
      <https://www.ietf.org/rfc/rfc5234.txt>
 
-   • RFC7405: Case-Sensitive String Support in ABNF.
+   • RFC7405: Case-Sensitive String Support in AGBNF.
 
      <https://www.ietf.org/rfc/rfc7405.txt>
 
@@ -328,12 +328,12 @@ Below are some links to external resources used when developed BNF Mode:
 
      <https://www.cl.cam.ac.uk/~mgk25/iso-14977.pdf>
 
-   • EBNF: A Notation to Describe Syntax.
+   • EGBNF: A Notation to Describe Syntax.
 
-     <https://www.ics.uci.edu/~pattis/ICS-33/lectures/ebnf.pdf>
+     <https://www.ics.uci.edu/~pattis/ICS-33/lectures/egbnf.pdf>
 
 
-File: bnf-mode.info,  Node: Index,  Next: Variable Index,  Prev: Bibliography,  Up: Top
+File: gbnf-mode.info,  Node: Index,  Next: Variable Index,  Prev: Bibliography,  Up: Top
 
 Index
 *****
@@ -351,7 +351,7 @@ Index
                                                                (line 17)
 
 
-File: bnf-mode.info,  Node: Variable Index,  Prev: Index,  Up: Top
+File: gbnf-mode.info,  Node: Variable Index,  Prev: Index,  Up: Top
 
 Variable Index
 **************
