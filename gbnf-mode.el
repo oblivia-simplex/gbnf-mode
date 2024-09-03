@@ -86,6 +86,11 @@ See `rx' documentation for more information about REGEXPS param."
 
 (defvar gbnf-font-lock-keywords
   `(
+    ;; Quoted string terminals
+        (,(gbnf-rx "\""
+                   (0+ (not (any "\"")))
+                   "\"")
+         0 font-lock-string-face)
     ;; LHS nonterminals may be preceded
     ;; by an unlimited number of spaces
     (,(gbnf-rx (and line-start
@@ -111,11 +116,7 @@ See `rx' documentation for more information about REGEXPS param."
                    symbol-end
                    (0+ space)))
      1 font-lock-warning-face)
-    ;; terminal strings
-    (,(gbnf-rx "\""
-               (not (any "\""))
-               "\"")))
-  "Font lock GBNF keywords for GBNF Mode.")
+  "Font lock GBNF keywords for GBNF Mode."))
 
 
 ;;;; Syntax
@@ -146,6 +147,10 @@ See `rx' documentation for more information about REGEXPS param."
     ;; Group square brackets
     (modify-syntax-entry ?\[ "(]" table)
     (modify-syntax-entry ?\] ")[" table)
+
+    ;; Group parentheses
+    (modify-syntax-entry ?\( "()" table)
+    (modify-syntax-entry ?\) ")(" table)
 
     ;; Comments are begins with “#” and ends with “\n”
     (modify-syntax-entry ?\# "<" table)
