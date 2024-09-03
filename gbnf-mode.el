@@ -135,8 +135,7 @@ See `rx' documentation for more information about REGEXPS param."
     ;; Treat | as a symbol
     (modify-syntax-entry ?\| "_" table)
 
-    ;; In GBNF there are no grouping
-    ;; brackets except angle ones
+    ;; Curly braces are just treated as symbols
     (modify-syntax-entry ?\{ "_" table)
     (modify-syntax-entry ?\} "_" table)
 

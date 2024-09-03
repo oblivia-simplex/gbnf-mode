@@ -1,12 +1,8 @@
-* BNF Mode for GNU Emacs
+* GBNF Mode for GNU Emacs
 
 [[https://www.gnu.org/licenses/gpl-3.0.txt][https://img.shields.io/badge/license-GPL_3-green.svg]]
-[[https://github.com/sergeyklay/bnf-mode/actions][https://github.com/sergeyklay/bnf-mode/workflows/build/badge.svg]]
-[[https://elpa.gnu.org/packages/bnf-mode.html][https://elpa.gnu.org/packages/bnf-mode.svg]]
-[[https://melpa.org/#/bnf-mode][https://melpa.org/packages/bnf-mode-badge.svg]]
-[[https://stable.melpa.org/#/bnf-mode][https://stable.melpa.org/packages/bnf-mode-badge.svg]]
 
-A GNU Emacs major mode for editing BNF grammars.
+A GNU Emacs major mode for editing GBNF grammars.
 
 #+begin_quote
 “Precise language is not the problem.  Clear language is the problem.”
@@ -14,17 +10,17 @@ A GNU Emacs major mode for editing BNF grammars.
 Richard Feynman
 #+end_quote
 
-Currently provides basic syntax and font-locking for BNF files.  BNF notation is
-supported exactly form as it was first announced in the ALGOL 60 report.
-EBNF and ABNF are not supported but their implementation is planned in the near
-future.
+Currently provides basic syntax and font-locking for GBNF files. GBNF (GGML BNF) is the format used to define formal grammars that can be used to constrain model outputs in [[https://github.com/ggerganov/llama.cpp][llama.cpp]]. For details, see [[https://github.com/ggerganov/llama.cpp/blob/master/grammars/README.md][the llama.cpp documentation on "grammars"]].
+
+This package is a fork of [[https://github.com/sergeyklay/bnf-mode][sergeyklay/bnf-mode: A GNU Emacs major mode for editing BNF grammars]], originally developed by Serghei Iakovlev. 
 
 When developing this mode, the following documents were taken into account:
 
 - [[https://www.masswerk.at/algol60/report.htm][Revised Report on the Algorithmic Language Algol 60]]
 - [[https://tools.ietf.org/html/rfc822][RFC822]]: Standard for ARPA Internet Text Messages
-- [[https://tools.ietf.org/html/rfc5234][RFC5234]]: Augmented BNF for Syntax Specifications: ABNF
-- [[https://tools.ietf.org/html/rfc7405][RFC7405]]: Case-Sensitive String Support in ABNF
+- [[https://tools.ietf.org/html/rfc5234][RFC5234]]: Augmented GBNF for Syntax Specifications: AGBNF
+- [[https://tools.ietf.org/html/rfc7405][RFC7405]]: Case-Sensitive String Support in AGBNF
+- [[https://github.com/ggerganov/llama.cpp/blob/master/grammars/README.md][llama.cpp's grammar documentation]]
 
 ** Features
 
@@ -33,23 +29,29 @@ When developing this mode, the following documents were taken into account:
 
 ** Installation
 
-Known to work with GNU Emacs 25.1 and later.  BNF Mode may work with
+Known to work with GNU Emacs 25.1 and later.  GBNF Mode may work with
 older versions of Emacs, or with other flavors of Emacs (e.g. XEmacs)
 but this is /not/ guaranteed.  Bug reports for problems related to using
-BNF Mode with older versions of Emacs will most like not be addressed.
+GBNF Mode with older versions of Emacs will most like not be addressed.
 
 The master of all the material is the Git repository at
-https://github.com/sergeyklay/bnf-mode .
+https://github.com/oblivia-simplex/gbnf-mode .
 
 NOTE: The ~master~ branch will always contain the latest unstable version.
 If you wish to check older versions or formal, tagged release, please switch
-to the relevant [[https://github.com/sergeyklay/bnf-mode/tags][tag]].
+to the relevant [[https://github.com/sergeyklay/gbnf-mode/tags][tag]].
 
-The recommended way is to use [[https://elpa.gnu.org/][ELPA]], [[https://stable.melpa.org/][MELPA Stable]] or [[https://melpa.org/][MELPA]]. If either is in your
-=package-archives=, do:
+The recommended way to install this package is to use [[https://github.com/radian-software/straight.el][straight.el]], like so:
 
-#+begin_src
-M-x package-install RET bnf-mode RET
+#+begin_src emacs-lisp
+  (use-package gbnf-mode
+    :straight (gbnf-mode
+  	     :type git
+  	     :host github
+  	     :repo "oblivia-simplex/gbnf-mode")
+    :config (lambda ()
+  	    (add-to-list 'auto-mode-alist
+  			 '("\\.gbnf\\'" . gbnf-mode))))
 #+end_src
 
 To learn on how to use any other installation methods refer to relevant
@@ -61,39 +63,30 @@ documentation.
 
 | Command (For the ~M-x~ prompt.) | Description                      |
 |---------------------------------+----------------------------------|
-| ~bnf-mode~                      | Switches to BNF Mode.            |
+| ~gbnf-mode~                      | Switches to GBNF Mode.            |
 
-By default any file that matches the glob ~*.bnf~ is automatically opened
-in ~bnf-mode~.
+By default any file that matches the glob ~*.gbnf~ is automatically opened
+in ~gbnf-mode~.
 
 ** Customization
 
 To customize various options, use command as follows:
 
 #+begin_src
-M-x customize-group RET bnf RET
+M-x customize-group RET gbnf RET
 #+end_src
-
-** Support
-
-Feel free to ask question or make suggestions in our [[https://github.com/sergeyklay/bnf-mode/issues][issue tracker]] .
-
-** Changes
-
-To see what has changed in recent versions of BNF Mode see:
-https://github.com/sergeyklay/bnf-mode/blob/master/NEWS .
 
 ** External Links
 
 - [[https://en.wikipedia.org/wiki/Backus%E2%80%93Naur_form][Wikipedia: Backus–Naur form]]
 - [[https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_form][Wikipedia: Extended Backus–Naur form]]
 - [[https://en.wikipedia.org/wiki/Augmented_Backus%E2%80%93Naur_form][Wikipedia: Augmented Backus–Naur form]]
-- [[https://www.cl.cam.ac.uk/~mgk25/iso-14977.pdf][ISO/IEC 14977: EBNF]]
-- [[https://www.ics.uci.edu/~pattis/ICS-33/lectures/ebnf.pdf][EBNF: A Notation to Describe Syntax]]
+- [[https://www.cl.cam.ac.uk/~mgk25/iso-14977.pdf][ISO/IEC 14977: EGBNF]]
+- [[https://www.ics.uci.edu/~pattis/ICS-33/lectures/egbnf.pdf][EGBNF: A Notation to Describe Syntax]]
 
 ** License
 
-BNF Mode is open source software licensed under the [[https://github.com/sergeyklay/bnf-mode/blob/master/LICENSE][GNU General Public Licence version 3]].
+GBNF Mode is open source software licensed under the [[https://github.com/sergeyklay/gbnf-mode/blob/master/LICENSE][GNU General Public Licence version 3]].
 Copyright © 2019, 2020, 2021, 2022 Free Software Foundation, Inc.
 
 *** Note On Copyright Years
